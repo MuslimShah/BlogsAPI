@@ -14,22 +14,15 @@ const postsSchea = new Schema({
         userId: {
             type: mongoose.Types.ObjectId,
             ref: "User",
-
-
         },
         comment: {
             type: String,
-
         }
-
     }],
     userId: {
         type: mongoose.Types.ObjectId,
         ref: 'User'
     }
-
-
 }, { timestamps: true });
-
 
 module.exports = mongoose.model("User", postsSchea);
