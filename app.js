@@ -1,11 +1,6 @@
-require('express-async-errors');
-require('dotenv').config();
-const express = require('express');
-const authRouts = require('./routes/auth')
-const blogsRoutes = require('./routes/blogs');
-const connectDB = require('./database/database');
-const pageNotFound = require('./utils/page-not-found');
-const errorHandler = require('./utils/error-handler');
+//TODO: implement searching on specific keywords
+//TODO:implement comment functionality
+const { express, authRouts, blogsRoutes, connectDB, pageNotFound, errorHandler } = require('./config/import');
 const auth = require('./utils/auth')
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -21,8 +16,7 @@ app.use('/api/v1/', auth, blogsRoutes);
 app.use(pageNotFound);
 //error handler middleware
 app.use(errorHandler);
-
-
+//start function for starting server
 const start = async() => {
     //connecting to db
     console.log('Initializing ...');

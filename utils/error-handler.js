@@ -15,7 +15,7 @@ const errorHandler = (err, req, res, next) => {
     //cast error==>for wrong id
     if (err.name === 'CastError') {
         customError.statusCode = StatusCodes.BAD_REQUEST,
-            customError.msg = `Invalid value for field id`
+            customError.msg = `No job with id :${err.value}`
     }
     //validation errors
     if (err.name === 'ValidationError') {
