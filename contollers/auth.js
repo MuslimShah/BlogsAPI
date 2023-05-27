@@ -1,6 +1,6 @@
 const User = require('../models/user');
 const { BadRequest, unAuthenticatedError } = require('../errors');
-const StatusCodes = require('http-status-codes');
+const { StatusCodes } = require('http-status-codes');
 
 //registering user
 exports.register = async(req, res) => {
@@ -21,7 +21,6 @@ exports.login = async(req, res) => {
         throw new unAuthenticatedError(`Invalid credintials`);
     }
     const isMatched = await user.comparePassword(password);
-    console.log(isMatched);
     if (!isMatched) {
         throw new unAuthenticatedError('Invalid credintials');
     }
