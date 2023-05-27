@@ -19,6 +19,11 @@ const blogsSchema = new Schema({
             type: String,
         }
     }],
+    deleted: {
+        type: Boolean,
+        enum: [true, false],
+        default: false
+    },
     userId: {
         type: mongoose.Types.ObjectId,
         ref: 'User'

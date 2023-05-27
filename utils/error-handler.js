@@ -2,8 +2,6 @@ const { CustomAPIError } = require('../errors');
 const { StatusCodes } = require('http-status-codes');
 
 //custom error handling middleware
-
-
 const errorHandler = (err, req, res, next) => {
     let customError = {
             statusCode: err.statusCode || StatusCodes.INTERNAL_SERVER_ERROR,
@@ -13,6 +11,11 @@ const errorHandler = (err, req, res, next) => {
     if (err.code && err.code === 11000) {
         customError.statusCode = StatusCodes.BAD_REQUEST;
         customError.msg = `Duplicate value for field ${Object.keys(err.keyValue)} please choose another value`
+    }
+    //cast error==>for wrong id
+    if (err.name === 'CastError') {
+        customError.statusCode = StatusCodes.BAD_REQUEST,
+            customError.msg = `Invalid value for field id`
     }
     //validation errors
     if (err.name === 'ValidationError') {
