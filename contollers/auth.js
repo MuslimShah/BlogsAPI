@@ -25,10 +25,7 @@ exports.login = async(req, res) => {
     if (!isMatched) {
         throw new unAuthenticatedError('Invalid credintials');
     }
-
+    //sending token to user...
     const token = await user.createToken();
     res.status(StatusCodes.OK).json({ token, name: user.name, msg: `user ${user.name} successfully logged in` })
-
-
-
 }
