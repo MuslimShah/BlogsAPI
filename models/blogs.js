@@ -1,7 +1,7 @@
 const { Schema, default: mongoose } = require('mongoose');
 
 //creating user schema
-const postsSchea = new Schema({
+const blogsSchema = new Schema({
     title: {
         type: String,
         required: [true, 'provide the title']
@@ -25,4 +25,4 @@ const postsSchea = new Schema({
     }
 }, { timestamps: true });
 
-module.exports = mongoose.model("User", postsSchea);
+module.exports = mongoose.model("Blogs", blogsSchema);

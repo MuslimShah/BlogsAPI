@@ -9,7 +9,7 @@ const UserSchema = new Schema({
         required: [true, 'please provide name'],
         minlength: 3,
         maxlength: 40,
-        // match: [/^[A-Za-z]+$/, 'name must be alphabets only']
+        match: [/^[a-zA-Z\s]+$/, 'name must be alphabets only']
     },
     email: {
         type: String,
