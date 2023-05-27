@@ -7,4 +7,4 @@ class unAuthenticatedError extends CustomAPIError {
         this.statusCode = StatusCodes.UNAUTHORIZED;
     }
 }
-module.exports = BadRequest;
+module.exports = unAuthenticatedError;
