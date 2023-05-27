@@ -6,6 +6,7 @@ const blogsRoutes = require('./routes/blogs');
 const connectDB = require('./database/database');
 const pageNotFound = require('./utils/page-not-found');
 const errorHandler = require('./utils/error-handler');
+const auth = require('./utils/auth')
 const app = express();
 const PORT = process.env.PORT || 3000;
 app.use(express.urlencoded({ extended: true }));
@@ -14,7 +15,7 @@ app.set('view engine', 'views');
 
 //routes
 app.use('/api/v1/auth', authRouts);
-app.use('/api/v1/', blogsRoutes);
+app.use('/api/v1/', auth, blogsRoutes);
 
 //page not found middleware
 app.use(pageNotFound);
