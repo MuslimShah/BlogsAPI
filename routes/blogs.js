@@ -1,5 +1,5 @@
 const express = require('express');
-const { createBlog, getAllBlogs, getBlog, getAllUserBlog, getAllUserBlogs, updateBlog, deleteBlog, postComment } = require('../contollers/blogs');
+const { createBlog, getAllBlogs, getBlog, getAllUserBlog, getAllUserBlogs, updateBlog, deleteBlog, postComment, deleteComment } = require('../contollers/blogs');
 const router = express.Router();
 
 
@@ -14,6 +14,7 @@ router.post('/', createBlog);
 router.patch('/:id', updateBlog);
 //comment on blog
 router.patch('/users/blogs/:id', postComment);
+router.delete('/users/comments/:commentId', deleteComment);
 //DELETE==>deleing blog
 router.delete('/:id', deleteBlog);
 module.exports = router;
