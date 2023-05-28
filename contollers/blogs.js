@@ -19,7 +19,7 @@ exports.createBlog = async(req, res) => {
 exports.getAllBlogs = async(req, res) => {
         //TODO :implement search in this based on keywords
         const userId = req.user.userId;
-        const blogs = await Blogs.find({ userId, deleted: false });
+        const blogs = await Blogs.find({ userId, deleted: false }).populate('comments.userId', 'name');
         if (blogs.length === 0) {
             throw new resourceNotFound(`no blogs found with userId :${userId}`);
         }
@@ -29,7 +29,7 @@ exports.getAllBlogs = async(req, res) => {
 exports.getBlog = async(req, res) => {
     const id = req.params.id;
     const userId = req.user.userId;
-    const blog = await Blogs.findOne({ _id: id, userId, deleted: false });
+    const blog = await Blogs.findOne({ _id: id, userId, deleted: false }).populate('comments.userId', 'name');
     if (!blog) {
         throw new resourceNotFound(`no user blog found with id :${id}`);
     }
@@ -40,7 +40,7 @@ exports.getBlog = async(req, res) => {
 exports.getAllUserBlogs = async(req, res) => {
     //TODO :implement search in this based on keywords
     const userId = req.user.userId;
-    const blogs = await Blogs.find({ deleted: false });
+    const blogs = await Blogs.find({ deleted: false }).populate('comments.userId', 'name');
     if (blogs.length === 0) {
         throw new resourceNotFound(`no blogs found }`);
     }
@@ -51,7 +51,7 @@ exports.getAllUserBlogs = async(req, res) => {
 exports.getAllUserBlog = async(req, res) => {
         const id = req.params.id;
         console.log(id);
-        const blog = await Blogs.findOne({ _id: id, deleted: false });
+        const blog = await Blogs.findOne({ _id: id, deleted: false }).populate('comments.userId', 'name');
         if (!blog) {
             throw new resourceNotFound(`no user blog found with id :${id}`);
         }
@@ -62,7 +62,7 @@ exports.updateBlog = async(req, res) => {
     const userId = req.user.userId;
     const blogId = req.params.id;
     const data = req.body;
-    const updatedBlog = await Blogs.findOneAndUpdate({ _id: blogId, userId, deleted: false }, data, { runValidators: true, new: true });
+    const updatedBlog = await Blogs.findOneAndUpdate({ _id: blogId, userId, deleted: false }, data, { runValidators: true, new: true }).populate('comments.userId', 'name');
     if (!updatedBlog) {
         throw new resourceNotFound(`no user blog found with id :${blogId}`);
     }
