@@ -1,6 +1,14 @@
 //TODO: implement searching on specific keywords
 //TODO:implement comment functionality
-const { express, authRouts, blogsRoutes, connectDB, pageNotFound, errorHandler } = require('./config/import');
+//importing required files from import.js
+const {
+    express,
+    authRouts,
+    blogsRoutes,
+    connectDB,
+    pageNotFound,
+    errorHandler
+} = require('./config/import');
 const auth = require('./utils/auth')
 const app = express();
 const PORT = process.env.PORT || 3000;
