@@ -9,6 +9,7 @@ const errorHandler = require('../utils/error-handler');
 const helmet = require('helmet');
 const cors = require('cors');
 const xss = require('xss-clean');
+const rateLimit = require('express-rate-limit')
 
 
 module.exports = {
@@ -20,5 +21,6 @@ module.exports = {
     errorHandler,
     helmet,
     cors,
-    xss
+    xss,
+    rateLimit
 };
