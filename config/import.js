@@ -6,6 +6,10 @@ const blogsRoutes = require('../routes/blogs');
 const connectDB = require('../database/database');
 const pageNotFound = require('../utils/page-not-found');
 const errorHandler = require('../utils/error-handler');
+const helmet = require('helmet');
+const cors = require('cors');
+const xss = require('xss-clean');
+
 
 module.exports = {
     express,
@@ -13,5 +17,8 @@ module.exports = {
     blogsRoutes,
     connectDB,
     pageNotFound,
-    errorHandler
+    errorHandler,
+    helmet,
+    cors,
+    xss
 };

@@ -7,13 +7,19 @@ const {
     blogsRoutes,
     connectDB,
     pageNotFound,
-    errorHandler
+    errorHandler,
+    cors,
+    helmet,
+    xss
 } = require('./config/import');
 const auth = require('./utils/auth')
 const app = express();
 const PORT = process.env.PORT || 3000;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json())
+app.use(helmet());
+app.use(cors());
+app.use(xss());
 app.set('view engine', 'views');
 
 //routes
