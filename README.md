@@ -1,7 +1,11 @@
 
 <html>
 <body>
-    <h1>Project Name</h1>
+    <h1>Blogs API</h1>
+    <h2>Author</h2>
+    <p>Muslim Shah</p>
+    <h2>Date</h2>
+     <p>May 28, 2023</p>
     <h2>Description</h2>
     <p>Blogs API in which user can create account ,login into account ,create blog ,update blog,delete blog ,read his own and other
 	users blogs comment on a blog and can delete his comment</p>
@@ -25,8 +29,9 @@
 	    <pre> <code>npm start</code></pre>
     </ol>
     <h2>API Routes</h2>
-    <h3>Authentication</h3>
+    <h2>Authentication</h2>	
     <ul>
+	<h3>Register User</h3>  
         <li><strong>POST api/v1/auth/register</strong>: Register a new user. (Input: User data) (Response: JWT token and user name)</li>
         <p>Input:</p>
         <pre><code>{
@@ -38,6 +43,7 @@
     "phoneNumber": "+1234567890",
     "country": "Dummyland"
 }</code></pre>
+	  <h3>Login User</h3>  
         <li><strong>POST api/v1/auth/login</strong>: User login. (Input: Email and password) (Response: JWT token, user name, and success message)</li>
         <p>Input:</p>
         <pre><code>{
@@ -45,17 +51,20 @@
     "password": "dummyPass123"
 }</code></pre>
     </ul>
-    <h3>GET Blogs [requires authentication]</h3>
-    <ul>
-        <li><strong>GET api/v1/</strong>: Get all blogs. (Response: Array of blogs and count)</li>
+    <h3>GET Blogs [Authentication Required]</h3>
+    <ul><h4>Get All Blog Posts</h4>
+        <li><strong>GET api/v1/</strong></li>
 	 <h3>Response:</h3>
-	 <pre><code>{"blogs": [<Blogs>],"count": 1}</code></pre>
-        <li><strong>GET api/v1/:id</strong>: Get a single blog by ID. (Response: Single blog)</li>
+	 <pre><code>{"blogs": [<Blogs>],"count": number}</code></pre>
+	  <h4>Get Single Blog Post</h4>
+        <li><strong>GET api/v1/:id</strong></li>
 	 <h3>Response:</h3>
 	 <pre><code>{"blog": [<Blog>]}</code></pre>
-        <li><strong>GET api/v1/users/blogs</strong>: Get all blogs of a user. (Response: Array of user blogs and count)</li>
+	  <h4>Get All Users Blogs Posts</h4>
+        <li><strong>GET api/v1/users/blogs</strong></li>
 	 <h3>Response:</h3>
-	 <pre><code>{"blogs": [<Blogs>],"count": 1}</code></pre>
+	 <pre><code>{"blogs": [<Blogs>],"count":number}</code></pre>
+	  <h4>Get a Single User Blog Post By Id</h4>
         <li><strong>GET api/v1/users/blogs/:id</strong>: Get a single user blog by ID. (Response: Single user blog)</li>
 	<h3>Response:</h3>
 	 <pre><code>{"blog": [<Blog>]}</code></pre>
@@ -63,7 +72,7 @@
 	<hr>
 	<h3>Create Blog</h3>
 <ul>
-    <li><strong>POST api/v1/</strong>: Create a new blog. (Input: Blog data) (Response: Created blog and success message)</li>
+    <li><strong>POST api/v1/</strong></li>
     <p>Input:</p>
     <pre><code>{
     "title": "Dummy Blog",
@@ -79,7 +88,7 @@
 }</code></pre>
 <hr>
 <h3>Update Blog</h3>
-    <li><strong>PATCH api/v1/:id</strong>: Update a blog. (Input: Updated blog data) (Response: Updated blog)</li>
+    <li><strong>PATCH api/v1/:id</strong></li>
     <p>Input:</p>
     <pre><code>{
     "title": "Updated Dummy Blog",
@@ -94,14 +103,14 @@
 }</code></pre>
 <hr>
 <h3>Delete Blog</h3>
-    <li><strong>DELETE api/v1/:id</strong>: Delete a blog. (Response: Success message)</li>
+    <li><strong>DELETE api/v1/:id</strong></li>
       <h3>Response:</h3>
     <pre><code>{
     "msg": "Blog with ID: <blogId> deleted successfully."
 }</code></pre>
 <hr>
 <h3>Post comment</h3>
-    <li><strong>Patch api/v1/users/blogs/:id</strong>: Post a comment on a blog. (Input: Comment data) (Response: Success message)</li>
+    <li><strong>Patch api/v1/users/blogs/:id</strong></li>
     <p>Input:</p>
     <pre><code>{
     "blogId": "<blogId>",
@@ -113,7 +122,7 @@
 }</code></pre>
 <hr>
 <h3>Delete Comment</h3>
-    <li><strong>DELETE api/v1/users/blogs/comments/:commentId</strong>: Delete a comment. (Response: Success message)</li>
+    <li><strong>DELETE api/v1/users/blogs/comments/:commentId</strong></li>
      <h3>Response:</h3>
     <pre><code>{
     "msg": "Comment with ID: <commentId> deleted successfully."
