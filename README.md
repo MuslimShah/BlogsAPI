@@ -1,29 +1,123 @@
 
-<h1>Express Starter Template with MVC Pattern</h1>
-<p>This is an Express starter template that implements the Model-View-Controller (MVC) pattern. It includes models, views, controllers, and custom error handlers to help you get started with building your web application quickly and easily.</p>
-<p>To use this template, you can clone this repository using Git:</p>
-<pre><code>git clone https://github.com/MuslimShah/express-stater-template.git</code></pre>
-<p>After cloning the repository, navigate to the project directory and install the dependencies using npm:</p>
-<pre><code>cd express-starter-template npm install</code></pre>
-<h2>Usage</h2>
-<p>To start the server, run the following command:</p>
-<pre><code>npm start</code></pre>
-<p>This will start the server on port 3000. You can access the server by navigating to <code>http://localhost:3000</code> in your web browser.</p>
-
-<h2>MVC Pattern</h2>
-<p>The MVC pattern is a popular design pattern used in web development. It separates the application into three interconnected components: the model, the view, and the controller.</p>
+<html>
+<body>
+    <h1>Project Name</h1>
+    <h2>Description</h2>
+    <p>Blogs API in which user can create account ,login into account ,create blog ,update blog,delete blog ,read his own and other
+	users blogs comment on a blog and can delete his comment</p>
+    <h2>Getting Started</h2>
+    <p>These instructions will get you a copy of the project up and running on your local machine.</p>
+    <h3>Prerequisites</h3>
+    <ul>
+        <li>Node.js</li>
+        <li>MongoDB</li>
+    </ul>
+    <h3>Installation</h3>
+    <ol>
+        <li>Clone the repository.</li>
+       <pre><code>git clone https://github.com/muslimshah/BlogsAPI.git</code></pre>
+        <li>Install the dependencies.</li>
+       <pre><code>npm install</code></pre>
+        <li>Configure the environment variables.</li>
+        <p>Create a <code>.env</code> file in the root directory and add the following:</p>
+        <pre><code>MONGODB_URI=&lt;your MongoDB connection string&gt;JWTSECRET=&lt;your secret key for JWT&gt; JWTLIFETIME=&lt;jwt life time&gt; </code></pre>
+        <li>Start the development server.</li>
+	    <pre> <code>npm start</code></pre>
+    </ol>
+    <h2>API Routes</h2>
+    <h3>Authentication</h3>
+    <ul>
+        <li><strong>POST api/v1/auth/register</strong>: Register a new user. (Input: User data) (Response: JWT token and user name)</li>
+        <p>Input:</p>
+        <pre><code>{
+    "name": "dummy",
+    "email": "dummy@gmail.com",
+    "password": "dummyPass123",
+    "gender": "Male",
+    "dateOfBirth": "01-01-2000",
+    "phoneNumber": "+1234567890",
+    "country": "Dummyland"
+}</code></pre>
+        <li><strong>POST api/v1/auth/login</strong>: User login. (Input: Email and password) (Response: JWT token, user name, and success message)</li>
+        <p>Input:</p>
+        <pre><code>{
+    "email": "dummy@gmail.com",
+    "password": "dummyPass123"
+}</code></pre>
+    </ul>
+    <h3>GET Blogs [requires authentication]</h3>
+    <ul>
+        <li><strong>GET api/v1/</strong>: Get all blogs. (Response: Array of blogs and count)</li>
+	 <h3>Response:</h3>
+	 <pre><code>{"blogs": [<Blogs>],"count": 1}</code></pre>
+        <li><strong>GET api/v1/:id</strong>: Get a single blog by ID. (Response: Single blog)</li>
+	 <h3>Response:</h3>
+	 <pre><code>{"blog": [<Blog>]}</code></pre>
+        <li><strong>GET api/v1/users/blogs</strong>: Get all blogs of a user. (Response: Array of user blogs and count)</li>
+	 <h3>Response:</h3>
+	 <pre><code>{"blogs": [<Blogs>],"count": 1}</code></pre>
+        <li><strong>GET api/v1/users/blogs/:id</strong>: Get a single user blog by ID. (Response: Single user blog)</li>
+	<h3>Response:</h3>
+	 <pre><code>{"blog": [<Blog>]}</code></pre>
+	</ul>
+	<hr>
+	<h3>Create Blog</h3>
 <ul>
-	<li><strong>Model:</strong> Represents the data and business logic of the application.</li>
-	<li><strong>View:</strong> Represents the user interface of the application.</li>
-	<li><strong>Controller:</strong> Acts as an intermediary between the model and the view, handling user input and updating the model and view accordingly.</li>
+    <li><strong>POST api/v1/</strong>: Create a new blog. (Input: Blog data) (Response: Created blog and success message)</li>
+    <p>Input:</p>
+    <pre><code>{
+    "title": "Dummy Blog",
+    "content": "This is a dummy blog post."
+}</code></pre>
+    <h3>Response:</h3>
+    <pre><code>{
+    "blog": {
+        "title": "Dummy Blog",
+        "content": "This is a dummy blog post."
+    },
+    "msg": "Blog created"
+}</code></pre>
+<hr>
+<h3>Update Blog</h3>
+    <li><strong>PATCH api/v1/:id</strong>: Update a blog. (Input: Updated blog data) (Response: Updated blog)</li>
+    <p>Input:</p>
+    <pre><code>{
+    "title": "Updated Dummy Blog",
+    "content": "This is the updated content of the dummy blog."
+}</code></pre>
+    <h3>Response:</h3>
+    <pre><code>{
+    "blog": {
+        "title": "Updated Dummy Blog",
+        "content": "This is the updated content of the dummy blog."
+    }
+}</code></pre>
+<hr>
+<h3>Delete Blog</h3>
+    <li><strong>DELETE api/v1/:id</strong>: Delete a blog. (Response: Success message)</li>
+      <h3>Response:</h3>
+    <pre><code>{
+    "msg": "Blog with ID: <blogId> deleted successfully."
+}</code></pre>
+<hr>
+<h3>Post comment</h3>
+    <li><strong>Patch api/v1/users/blogs/:id</strong>: Post a comment on a blog. (Input: Comment data) (Response: Success message)</li>
+    <p>Input:</p>
+    <pre><code>{
+    "blogId": "<blogId>",
+    "content": "This is a dummy comment."
+}</code></pre>
+     <h3>Response:</h3>
+    <pre><code>{
+    "msg": "Comment posted successfully."
+}</code></pre>
+<hr>
+<h3>Delete Comment</h3>
+    <li><strong>DELETE api/v1/users/blogs/comments/:commentId</strong>: Delete a comment. (Response: Success message)</li>
+     <h3>Response:</h3>
+    <pre><code>{
+    "msg": "Comment with ID: <commentId> deleted successfully."
+}</code></pre>
 </ul>
-<p>In this template, the <code>models</code> directory contains the database schema and models. The <code>views</code> directory contains the HTML templates, while the <code>controllers</code> directory contains the logic for handling HTTP requests and responses.</p>
-
-<h2>Error Handlers</h2>
-<p>Error handling is an important aspect of building robust web applications. This template includes custom error handlers to help you handle errors gracefully.</p>
-<p>The <code>errorHandlers</code> directory contains custom error handlers for handling 404 and 500 errors. If a user navigates to a non-existent route, they will receive a 404 error. If there is an internal server error, they will receive a 500 error.</p>
-
-<h2>Contributing</h2>
-<p>Contributions are welcome! If you would like to contribute to this project, please open a pull request.</p>
-
-
+</body>
+</html>
