@@ -83,32 +83,35 @@ exports.deleteBlog = async(req, res) => {
 
 }
 
+//<--------------- COMMENT SECTION ------------------------>
+
 //Patch==>post comment
 exports.postComment = async(req, res) => {
-        const userId = req.user.userId;
-        const blogId = req.params.id;
-        const content = req.body.content;
-        const blog = await Blogs
-            .findOneAndUpdate({ _id: blogId }, { $push: { comments: { userId: userId, comment: content } } }, { runValidators: true, new: true })
-        if (!blog) {
-            throw new resourceNotFound(`no user blog found with id :${blogId}`);
-        }
-
-        res.status(StatusCodes.OK).json({ msg: `comment with id:${blogId} done successfully` });
-
-
+    const userId = req.user.userId;
+    const blogId = req.params.id;
+    const content = req.body.content;
+    const blog = await Blogs
+        .findOneAndUpdate({ _id: blogId }, { $push: { comments: { userId: userId, comment: content } } }, { runValidators: true, new: true })
+    if (!blog) {
+        throw new resourceNotFound(`no user blog found with id :${blogId}`);
     }
-    //pull==>delete comment
+
+    res.status(StatusCodes.OK).json({ msg: `comment with id:${blogId} done successfully` });
+
+
+}
+
+// <------------------ DELETE COMMENT ------------------------->
+//pull==>delete comment
 
 exports.deleteComment = async(req, res) => {
     const userId = req.user.userId;
     const blogId = req.query.blogId;
-    console.log(blogId);
     const commentId = req.params.commentId;
     const blog = await Blogs
         .findOneAndUpdate({ _id: blogId }, { $pull: { comments: { _id: commentId, userId: { _id: userId } } } }, { runValidators: true, new: true })
     if (!blog) {
-        throw new resourceNotFound(`no user blog found with id :${commentId}`);
+        throw new resourceNotFound(`no comment found with id :${commentId}`);
     }
 
     res.status(StatusCodes.OK).json({ msg: `comment with id:${commentId} deleted successfully` });
