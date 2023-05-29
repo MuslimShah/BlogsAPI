@@ -128,5 +128,16 @@
     "msg": "Comment with ID: <commentId> deleted successfully."
 }</code></pre>
 </ul>
+  <h2>Security Packages</h2>
+      <ul>
+        <li>helmet: Provides various security-related HTTP headers.</li>
+        <li>cors: Enables Cross-Origin Resource Sharing (CORS) for handling requests from different domains.</li>
+        <li>xss-clean: Prevents Cross-Site Scripting (XSS) attacks by sanitizing user input.</li>
+        <li>express-limiter: Implements rate limiting to protect against brute force and denial-of-service attacks.</li>
+      </ul>
+      <h2>Error Handling</h2>
+      <ul>
+        <li>express-async-errors: Handles asynchronous errors in Express middleware and routes.</li>
+      </ul>
 </body>
 </html>
