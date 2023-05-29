@@ -128,7 +128,8 @@
     "msg": "Comment with ID: <commentId> deleted successfully."
 }</code></pre>
 </ul>
-  <h2>Security Packages</h2>
+<hr>
+  <h2>Security Packages Used</h2>
       <ul>
         <li>helmet: Provides various security-related HTTP headers.</li>
         <li>cors: Enables Cross-Origin Resource Sharing (CORS) for handling requests from different domains.</li>
