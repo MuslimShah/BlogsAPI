@@ -1,4 +1,36 @@
-//TODO: implement searching on specific keywords
+/*********************************************
+ * Project name: Blogs API
+ * Author: Muslim Shah
+ * Date: 28/5/2023
+ * 
+ * Description: Blogs API in which users can create an account, login, create, update, and delete blogs,
+ * read their own and other users' blogs, comment on a blog, and delete their comments.
+ * 
+ * Routes Handled:
+ * - api/v1/auth/register
+ * - api/v1/auth/login (GET)
+ * - Blogs [Authentication Required]
+ *    - GET api/v1/
+ *    - GET api/v1/:id
+ *    - GET api/v1/users/blogs
+ *    - GET api/v1/users/blogs/:id
+ *    - Create Blog (POST api/v1/)
+ *    - Update Blog (PATCH api/v1/:id)
+ *    - Delete Blog (DELETE api/v1/:id)
+ *    - Post Comment
+ *       - PATCH api/v1/users/blogs/:id
+ *       - Delete Comment (DELETE api/v1/users/blogs/comments/:commentId)
+ * 
+ * Security Packages Used:
+ * - helmet: Provides various security-related HTTP headers.
+ * - cors: Enables Cross-Origin Resource Sharing (CORS) for handling requests from different domains.
+ * - xss-clean: Prevents Cross-Site Scripting (XSS) attacks by sanitizing user input.
+ * - express-limiter: Implements rate limiting to protect against brute force and denial-of-service attacks.
+ * 
+ * Error Handling:
+ * - express-async-errors: Handles asynchronous errors in Express.js.
+ *********************************************/
+
 
 //importing required files from import.js
 const {
