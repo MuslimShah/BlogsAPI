@@ -47,7 +47,13 @@ exports.getBlog = async(req, res) => {
 exports.getAllUserBlogs = async(req, res) => {
     //TODO :implement search in this based on keywords
     const userId = req.user.userId;
-    const blogs = await Blogs.find({ deleted: false }).populate('comments.userId', 'name');
+    const search = req.query.search;
+    const query = { userId: userId, deleted: false };
+    //search for a specific title
+    if (search) {
+        query.title = { $regex: search, $options: 'i' };
+    }
+    const blogs = await Blogs.find(query).populate('comments.userId', 'name');
     if (blogs.length === 0) {
         throw new resourceNotFound(`no blogs found }`);
     }

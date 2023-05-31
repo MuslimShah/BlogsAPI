@@ -56,12 +56,16 @@
         <li><strong>GET api/v1/</strong></li>
 	 <h3>Response:</h3>
 	 <pre><code>{"blogs": [<Blogs>],"count": number}</code></pre>
+     <h3>Search For Blog</h3>
+      <pre><code>GET api/v1/?search="something" -->based on title</code></pre>
 	  <h4>Get Single Blog Post</h4>
         <li><strong>GET api/v1/:id</strong></li>
 	 <h3>Response:</h3>
 	 <pre><code>{"blog": [<Blog>]}</code></pre>
 	  <h4>Get All Users Blogs Posts</h4>
         <li><strong>GET api/v1/users/blogs</strong></li>
+        <h3>Search For Blog</h3>
+      <pre><code>GET api/v1/users/blogs?search="something" -->based on title</code></pre>
 	 <h3>Response:</h3>
 	 <pre><code>{"blogs": [<Blogs>],"count":number}</code></pre>
 	  <h4>Get a Single User Blog Post By Id</h4>
