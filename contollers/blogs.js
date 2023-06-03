@@ -46,9 +46,9 @@ exports.getBlog = async(req, res) => {
 //get all users blogs==>ALL BLOGS
 exports.getAllUserBlogs = async(req, res) => {
     //TODO :implement search in this based on keywords
-    const userId = req.user.userId;
+//     const userId = req.user.userId;
     const search = req.query.search;
-    const query = { userId: userId, deleted: false };
+    const query = { deleted: false };
     //search for a specific title
     if (search) {
         query.title = { $regex: search, $options: 'i' };
