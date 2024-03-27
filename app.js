@@ -46,6 +46,7 @@ const {
 } = require("./config/import");
 require("dotenv").config();
 const auth = require("./utils/auth");
+const path = require("path");
 const app = express();
 const PORT = process.env.PORT || 3000;
 app.use(express.urlencoded({ extended: true }));
@@ -53,7 +54,7 @@ app.use(express.json());
 app.use(helmet());
 app.use(cors());
 app.use(xss());
-app.use(express.static("public"));
+app.use(express.static(path.join(__dirname, "public")));
 app.use(
   rateLimit({
     windowMs: 15 * 60 * 1000, // 15 minutes
