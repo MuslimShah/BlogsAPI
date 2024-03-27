@@ -53,6 +53,7 @@ app.use(express.json());
 app.use(helmet());
 app.use(cors());
 app.use(xss());
+app.use(express.static("public"));
 app.use(
   rateLimit({
     windowMs: 15 * 60 * 1000, // 15 minutes
