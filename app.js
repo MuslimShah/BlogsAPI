@@ -67,7 +67,7 @@ app.set("view engine", "views");
 
 //routes
 app.use("/api/v1/auth", authRouts);
-app.use("/api/v1/", auth, blogsRoutes);
+app.use("/api/v1/", blogsRoutes);
 
 //page not found middleware
 app.use(pageNotFound);
