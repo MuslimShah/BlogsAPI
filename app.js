@@ -48,7 +48,7 @@ require("dotenv").config();
 const auth = require("./utils/auth");
 const path = require("path");
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5000;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(helmet());
@@ -79,7 +79,7 @@ const start = async () => {
   console.log("Initializing ...");
   try {
     await connectDB(process.env.MONGODB_URI);
-    app.listen(PORT, () => console.log(`CONNECTED ON PORT ${PORT}`));
+    app.listen(PORT, "0.0.0.0", () => console.log(`CONNECTED ON PORT ${PORT}`));
   } catch (error) {
     console.log("database connection error");
   }
