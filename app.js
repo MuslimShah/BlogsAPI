@@ -51,7 +51,7 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(helmet());
+// app.use(helmet());
 app.use(
   cors({
     origin: "*",
@@ -59,16 +59,16 @@ app.use(
     allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
-app.use(xss());
+// app.use(xss());
 app.use(express.static(path.join(__dirname, "public")));
-app.use(
-  rateLimit({
-    windowMs: 15 * 60 * 1000, // 15 minutes
-    max: 100, // Limit each IP to 100 requests per `window` (here, per 15 minutes)
-    standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
-    legacyHeaders: false, // Disable the `X-RateLimit-*` headers
-  })
-);
+// app.use(
+//   rateLimit({
+//     windowMs: 15 * 60 * 1000, // 15 minutes
+//     max: 100, // Limit each IP to 100 requests per `window` (here, per 15 minutes)
+//     standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
+//     legacyHeaders: false, // Disable the `X-RateLimit-*` headers
+//   })
+// );
 app.set("view engine", "views");
 
 //routes
