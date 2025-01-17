@@ -10,22 +10,22 @@ const UserSchema = new Schema(
       required: [true, "please provide name"],
       minlength: 3,
       maxlength: 40,
-      match: [/^[a-zA-Z\s]+$/, "name must be alphabets only"],
+      // match: [/^[a-zA-Z\s]+$/, "name must be alphabets only"],
     },
     email: {
       type: String,
       required: [true, "you must provide email"],
-      match: [/^[^\s@]+@[^\s@]+\.[^\s@]+$/, "must provide a valid email"],
+      // match: [/^[^\s@]+@[^\s@]+\.[^\s@]+$/, "must provide a valid email"],
       unique: [true, "must provide a unique email"],
     },
     password: {
       type: String,
       required: [true, "must provide the password"],
       minlength: [, "password must be atleast 8 characters"],
-      match: [
-        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d@$!%*?&]{8,}$/,
-        "must provide correct password",
-      ],
+      // match: [
+      //   /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d@$!%*?&]{8,}$/,
+      //   "must provide correct password",
+      // ],
     },
     gender: {
       type: String,
