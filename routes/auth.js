@@ -11,4 +11,5 @@ router.post("/register", register);
 //POST ==>LOGIN USER
 router.post("/login", login);
 router.post("/upload", upload.single("image"), uploadImage);
+//upload image done
 module.exports = router;
